@@ -25,4 +25,18 @@ exports.all = async(req, res, next)=> {
     } catch (err) {
        res.status(500).json({error: err.message}); 
     }
+    next();
+}
+
+exports.single = async(req, res, next)=> {
+    const id = req.params.id;
+    try {
+        const oneUser = await User.findById(id);
+        if(!oneUser) {
+            return res.status(404).json({error: `No such user with the ID ${id}`});
+        }
+        res.status(200).json({message: 'User found', data: oneUser});
+    } catch (err) {
+        res.status(500).json({error: err.message});
+    }
 }
