@@ -6,7 +6,7 @@ exports.create = async(req, res, next)=> {
     try {
         if(validator.isEmpty(name)) {
             throw new Error('Please enter a name');
-        } else if(!validator.isAlpha(name)) {
+        } else if(!validator.isAlpha(name, 'en-GB', {ignore: ' '})) {
             throw new Error('Name must be a string');
         }
         const newUser = await User.create(req.body);
