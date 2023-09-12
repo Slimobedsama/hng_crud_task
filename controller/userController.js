@@ -17,3 +17,12 @@ exports.create = async(req, res, next)=> {
     }
     next()
 }
+
+exports.all = async(req, res, next)=> {
+    try {
+        const allUsers = await User.find();
+        res.status(200).json(allUsers);
+    } catch (err) {
+       res.status(500).json({error: err.message}); 
+    }
+}
