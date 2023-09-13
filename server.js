@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
-const db = require('./config/db');
+const mongoose = require('mongoose')
+// const db = require('./config/db');
 const userRouter = require('./router/userRoute');
 const dotenv = require('dotenv');
 dotenv.config();
@@ -12,8 +13,15 @@ app.use(express.urlencoded({extended: true}));
 // user middleware
 app.use('/api', userRouter);
 
-db()
-.then(()=> {
+const db = async()=> {
+    try {
+        await mongoose.connect(process.env.DBURL, {useNewUrlParser: true, useUnifiedTopology: true});
+        console.log('Database Connected');
+    } catch (err) {
+        console.log(err);
+    }
+}
+db().then(()=> {
     app.listen(PORT, ()=> console.log(`Server listening on port ${PORT}`));
 })
 .catch((err)=> console.log(err))
