@@ -6,3 +6,7 @@ This api which focuses on the foundamentals of api was written in nodejs(a runti
 3. Install your npm package using the command `npm install`
 4. Read the documentation on how to use **CRUD**
 5. Add, commit and push to your forked repository
+## How To Use The API
+The steps on how to use this API can be found on the `doc` directory.
+## Source Code 
+https://github.com/Slimobedsama/hng_crud_task
